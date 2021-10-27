@@ -54,13 +54,14 @@ function addGenre(genre) {
         card.setAttribute("data-question", data.results[0].question);
         card.setAttribute("data-answer", data.results[0].correct_answer);
         card.setAttribute("data-value", card.getInnerHTML());
-      });
-
-    card.addEventListener("click", flipCard);
+      })
+      .then((done) => card.addEventListener("click", flipCard));
   });
 }
 
 function flipCard() {
+  this.style.fontSize = "15px";
+  this.style.justifyContent = "space-between";
   console.log("clicked on the cared" + event.target.innerHTML);
   const textDisplay = document.createElement("div");
   const allButtons = document.createElement("div");
@@ -83,8 +84,11 @@ function flipCard() {
 function getResult() {
   //   const allCards = Array.from(document.querySelectorAll(".card"));
   //   allCards.forEach((card) => card.addEventListener("click", flipCard));
-
+  // font-size: 50px;
+  //     justify-content: center;
   const cardOfButton = this.parentElement.parentElement;
+  cardOfButton.style.fontSize = "50px";
+  cardOfButton.style.justifyContent = "center";
   console.log(cardOfButton);
   if (cardOfButton.getAttribute("data-answer") === this.innerHTML) {
     scoreCounter =
@@ -98,7 +102,7 @@ function getResult() {
       }
       cardOfButton.innerHTML = `+${cardOfButton.getAttribute("data-value")}`;
       cardOfButton.classList.add("center");
-    }, 100);
+    }, 0);
   } else {
     cardOfButton.classList.add("wrong-answer");
     setTimeout(() => {
@@ -110,7 +114,7 @@ function getResult() {
       }
       cardOfButton.innerHTML = `-${cardOfButton.getAttribute("data-value")}`;
       cardOfButton.classList.add("center");
-    }, 100);
+    }, 0);
   }
 }
 
