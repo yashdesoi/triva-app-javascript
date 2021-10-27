@@ -96,25 +96,22 @@ function getResult() {
     score.innerHTML = scoreCounter;
     cardOfButton.classList.add("correct-answer");
 
-    setTimeout(() => {
-      while (cardOfButton.firstChild) {
-        cardOfButton.removeChild(cardOfButton.lastChild);
-      }
-      cardOfButton.innerHTML = `+${cardOfButton.getAttribute("data-value")}`;
-      cardOfButton.classList.add("center");
-    }, 0);
+    while (cardOfButton.firstChild) {
+      cardOfButton.removeChild(cardOfButton.lastChild);
+    }
+    cardOfButton.innerHTML = `+${cardOfButton.getAttribute("data-value")}`;
+    cardOfButton.classList.add("center");
   } else {
     cardOfButton.classList.add("wrong-answer");
-    setTimeout(() => {
-      scoreCounter =
-        scoreCounter - parseInt(cardOfButton.getAttribute("data-value"));
-      score.innerHTML = scoreCounter;
-      while (cardOfButton.firstChild) {
-        cardOfButton.removeChild(cardOfButton.lastChild);
-      }
-      cardOfButton.innerHTML = `-${cardOfButton.getAttribute("data-value")}`;
-      cardOfButton.classList.add("center");
-    }, 0);
+
+    scoreCounter =
+      scoreCounter - parseInt(cardOfButton.getAttribute("data-value"));
+    score.innerHTML = scoreCounter;
+    while (cardOfButton.firstChild) {
+      cardOfButton.removeChild(cardOfButton.lastChild);
+    }
+    cardOfButton.innerHTML = `-${cardOfButton.getAttribute("data-value")}`;
+    cardOfButton.classList.add("center");
   }
 }
 
